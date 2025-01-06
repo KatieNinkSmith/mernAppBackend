@@ -10,6 +10,7 @@ import db from "./db/conn.mjs";
 // import my routes from their folders
 import brainEntries from "./routes/brain.mjs";
 import CalenderEntries from "./routes/entry.mjs";
+import TodoEntries from "./routes/todo.mjs";
 
 // set up port
 const PORT = process.env.PORT || 5052;
@@ -24,12 +25,15 @@ app.use(express.json());
 
 //routes
 app.get("/", (req, res) => {
-  res.send("<h1>Calender API</h1><ol>endpoints: <li> todos</li> <ol>");
+  res.send(
+    "<h1>Calender API</h1><ol>endpoints: <li> brain dump - /api/braindump</li> <li> entries - /api/calendar</li> <li> todos - /api/todos</li> <ol>"
+  );
 });
 
 // fill in my endpoint routes - but they will be in their own folders
 app.use("/api/braindump", brainEntries);
 app.use("/api/calendar", CalenderEntries);
+app.use("/api/todos", TodoEntries);
 
 // default, catch-all route
 app.get("/*", (req, res) => {
