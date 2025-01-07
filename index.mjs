@@ -6,6 +6,8 @@ dotenv.config();
 
 // import conn.mjs so that i connect to my db
 import db from "./db/conn.mjs";
+//import cors so that my frontend and back end can communicate
+import cors from "cors";
 
 // import my routes from their folders
 import brainEntries from "./routes/brain.mjs";
@@ -19,14 +21,14 @@ const PORT = process.env.PORT || 5052;
 const app = express();
 
 // middleware
-// Middleware
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 
 //routes
 app.get("/", (req, res) => {
   res.send(
-    "<h1>Calender API</h1><ol>endpoints: <li> brain dump - /api/braindump</li> <li> entries - /api/calendar</li> <li> todos - /api/todos</li> <ol>"
+    "<h1>Calender API</h1><ol>endpoints: <br/><li> brain dump - /api/braindump</li> <li> entries - /api/calendar</li> <li> todos - /api/todos</li> <ol>"
   );
 });
 
