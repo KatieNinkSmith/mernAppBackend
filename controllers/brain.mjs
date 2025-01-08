@@ -52,6 +52,26 @@ const addEntry = async (req, res) => {
   }
 };
 
+const updateEntry = async (req, res) => {
+  console.log("Editing... ");
+  try {
+    const updatedEntry = await Brain.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    console.log(updatedEntry);
+    if (!updatedEntryEntry) {
+      return res.status(404).send("Entry not found");
+    }
+    res.status(200).json(updatedEntry);
+  } catch (err) {
+    res.send(err).status(400);
+  }
+};
+
 const deleteEntry = async (req, res) => {
   console.log("deleting... ");
   try {
@@ -60,23 +80,6 @@ const deleteEntry = async (req, res) => {
       return res.status(404).send("Entry not found");
     }
     res.status(200).json(deletedEntry);
-  } catch (err) {
-    res.send(err).status(400);
-  }
-};
-
-const updateEntry = async (req, res) => {
-  console.log("Editing... ");
-  try {
-    const updatedEntry = await Brain.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
-    if (!updatedEntryEntry) {
-      return res.status(404).send("Entry not found");
-    }
-    res.status(200).json(updatedEntry);
   } catch (err) {
     res.send(err).status(400);
   }
