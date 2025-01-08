@@ -13,6 +13,7 @@ import cors from "cors";
 import brainEntries from "./routes/brain.mjs";
 import CalenderEntries from "./routes/entry.mjs";
 import TodoEntries from "./routes/todo.mjs";
+import users from "./routes/user.mjs";
 
 // set up port
 const PORT = process.env.PORT || 5050;
@@ -36,6 +37,7 @@ app.get("/", (req, res) => {
 app.use("/api/braindump", brainEntries);
 app.use("/api/calendar", CalenderEntries);
 app.use("/api/todos", TodoEntries);
+app.use("/api/users", users);
 
 // default, catch-all route
 app.get("/*", (req, res) => {
