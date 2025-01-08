@@ -15,14 +15,14 @@ import CalenderEntries from "./routes/entry.mjs";
 import TodoEntries from "./routes/todo.mjs";
 
 // set up port
-const PORT = process.env.PORT || 5052;
+const PORT = process.env.PORT || 5050;
 
 //creat app
 const app = express();
 
 // middleware
 app.use(cors());
-app.use(logger("dev"));
+// app.use(logger("dev"));
 app.use(express.json());
 
 //routes
